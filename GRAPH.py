@@ -9,8 +9,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-import pyqtgraph.exporters
 import pyqtgraph as pg
+import pyqtgraph.exporters
 
 # from ui import Ui_Form
 
