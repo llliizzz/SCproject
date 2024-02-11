@@ -120,12 +120,12 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="SaveBtn">
    <property name="text">
-    <string>Сохранить Ctrl+S</string>
+    <string>Сохранить</string>
    </property>
   </action>
   <action name="HelpBtn">
    <property name="text">
-    <string>Помощь Ctrl+H</string>
+    <string>Помощь</string>
    </property>
   </action>
  </widget>

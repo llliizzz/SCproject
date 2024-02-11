@@ -57,10 +57,10 @@ class GraphWin(QMainWindow):
         self.SaveBtn.triggered.connect(self.SaveImage)
         self.SaveBtn.setShortcut(QKeySequence("Ctrl+S"))
 
+        self.HelpBtn.triggered.connect(self.HelpOpen)
+        self.HelpBtn.setShortcut(QKeySequence("Ctrl+H"))
+
         self.AddButton.clicked.connect(self.Add)
-
-
-
 
     def SaveImage(self):
         exporter = pg.exporters.ImageExporter(self.Field.scene())
@@ -70,6 +70,9 @@ class GraphWin(QMainWindow):
                                                   "PNG(*.png);;JPEG(*.jpg *.jpeg);;All Files(*.*) ")
         exporter.export(filePath)
         exSaved.show()
+
+    def HelpOpen(self):
+        pass
 
     def draw(self, mas):
         # print(mas)
@@ -145,13 +148,14 @@ class SavedFile(QDialog):
         uic.loadUi('SavedFile.ui', self)
 
         self.OK.clicked.connect(self.dOK)
-        self.Exit.clicked.connect(self.exit())
+        self.Exit.clicked.connect(self.dexit)
 
     def dOK(self):
         exSaved.close()
 
-    def exit(self):
-        sys.exit(app.exec_())
+    def dexit(self):
+        exGr.close()
+        exSaved.close()
 
 
 if __name__ == '__main__':
