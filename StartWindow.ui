@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StartWin</class>
+ <widget class="QDialog" name="StartWin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>950</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>950</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Sitka Heading</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Grapher</string>
+  </property>
+  <widget class="QLabel" name="Heading">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>60</y>
+     <width>801</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>32</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Построение графиков функций</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="NameText">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>290</y>
+     <width>401</width>
+     <height>87</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="NamePr">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>230</y>
+     <width>411</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="text">
+    <string>Введите название проекта:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GoButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>520</y>
+     <width>351</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Перейти к построению</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="WhiteBtn">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>450</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Светлая</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">GroupBtn</string>
+   </attribute>
+  </widget>
+  <widget class="QLabel" name="NamePr_2">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>400</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="text">
+    <string>Тема:</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="BlackBtn">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>450</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Тёмная</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">GroupBtn</string>
+   </attribute>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>390</y>
+     <width>821</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="GroupBtn"/>
+ </buttongroups>
+</ui>

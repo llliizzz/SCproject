@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GraphWin</class>
+ <widget class="QMainWindow" name="GraphWin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1050</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1050</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Sitka Heading</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Grapher</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="PlotWidget" name="Field">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>54</y>
+      <width>1030</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Sitka Heading</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="AddButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>750</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Добавить график</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Title">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>1001</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Sitka Heading</family>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1050</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="MenuBtn">
+    <property name="title">
+     <string>Меню</string>
+    </property>
+    <addaction name="SaveBtn"/>
+    <addaction name="HelpBtn"/>
+   </widget>
+   <addaction name="MenuBtn"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="SaveBtn">
+   <property name="text">
+    <string>Сохранить Ctrl+S</string>
+   </property>
+  </action>
+  <action name="HelpBtn">
+   <property name="text">
+    <string>Помощь Ctrl+H</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

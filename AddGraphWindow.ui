@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddWindow</class>
+ <widget class="QDialog" name="AddWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>514</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Add Graphic</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>491</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>22</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Добавить график функции:</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="finctionTE">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>90</y>
+     <width>361</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="example">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>150</y>
+     <width>241</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Например: x**2 + 2*x + 3</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="colorBox">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>220</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Subheading</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>Красный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Зелёный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Синий</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Чёрный</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Фиолетовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Оранжевый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Розовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Голубой</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Белый</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_color">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>210</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Цвет:</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>190</y>
+     <width>471</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>471</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_diapason">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>290</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Диапазон:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditFROM">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>301</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditTO">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>301</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="OKButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>357</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CancelButton">
+   <property name="geometry">
+    <rect>
+     <x>255</x>
+     <y>357</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Отменить</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="example_2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>320</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sitka Heading</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>по оси x</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
