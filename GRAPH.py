@@ -59,13 +59,8 @@ class GraphWin(QMainWindow):
 
         self.AddButton.clicked.connect(self.Add)
 
-        # self.Field.setBackground("w")
 
-        # self.e = '2 * x ** 2'
-        # x = list(np.arange(-10, 10 + 1))
-        # y = list(ne.evaluate(self.e))
-        # print(x, y)
-        # self.Field.plot(x, y, pen='w')
+
 
     def SaveImage(self):
         exporter = pg.exporters.ImageExporter(self.Field.scene())
@@ -74,6 +69,7 @@ class GraphWin(QMainWindow):
                                                   f"{path}",
                                                   "PNG(*.png);;JPEG(*.jpg *.jpeg);;All Files(*.*) ")
         exporter.export(filePath)
+        exSaved.show()
 
     def draw(self, mas):
         # print(mas)
@@ -143,10 +139,26 @@ class AddWin(QDialog):
         exAdd.close()
 
 
+class SavedFile(QDialog):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('SavedFile.ui', self)
+
+        self.OK.clicked.connect(self.dOK)
+        self.Exit.clicked.connect(self.exit())
+
+    def dOK(self):
+        exSaved.close()
+
+    def exit(self):
+        sys.exit(app.exec_())
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = StartWin()  # Стартовое окно (класс)
     exGr = GraphWin()  # Основное окно (класс)
     exAdd = AddWin()
+    exSaved = SavedFile()
     ex.show()  # Изначально - открытие стартового окна
     sys.exit(app.exec_())
