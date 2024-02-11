@@ -12,29 +12,27 @@ from PyQt5.QtCore import *
 import pyqtgraph as pg
 import pyqtgraph.exporters
 
-# from ui import Ui_Form
-
-grapics = []
+grapics = []  # список всех добавленных графиков
 
 
-class StartWin(QDialog):
+class StartWin(QDialog):  # стартовое окно
     def __init__(self):
         super().__init__()
         uic.loadUi('StartWindow.ui', self)
 
         self.GoButton.clicked.connect(self.switchGraph)
 
-    def switchGraph(self):
+    def switchGraph(self):  # переключение окон
         if self.BlackBtn.isChecked():
             color = 'b'
         else:
             color = 'w'
 
-        name = self.NameText.toPlainText()
+        name = self.NameText.toPlainText()  # получение текста, введённого пользователем
         if name == '':
             name = ' '
 
-        with open("name+color.txt", "a+") as my_file:
+        with open("name+color.txt", "a+") as my_file:  # запись данных, введённых пользователем в текстовый файл
             my_file.write('@')
             my_file.write(color)
             my_file.write('$')
@@ -42,19 +40,19 @@ class StartWin(QDialog):
 
         global grapics
         grapics = []
-        exGr.show()
+        exGr.show()  # показ следующего окна
 
 
-class GraphWin(QMainWindow):
+class GraphWin(QMainWindow):  # основное окно
     def __init__(self):
         super().__init__()
         global grapics
 
         uic.loadUi('GraphWindow.ui', self)  # Загружаем дизайн
 
-        self.Field.showGrid(x=True, y=True)
+        self.Field.showGrid(x=True, y=True)  # показ сетки на поле
 
-        self.SaveBtn.triggered.connect(self.SaveImage)
+        self.SaveBtn.triggered.connect(self.SaveImage)  # подключение кнопок
         self.SaveBtn.setShortcut(QKeySequence("Ctrl+S"))
 
         self.HelpBtn.triggered.connect(self.HelpOpen)
@@ -62,68 +60,67 @@ class GraphWin(QMainWindow):
 
         self.AddButton.clicked.connect(self.Add)
 
-    def SaveImage(self):
+    def SaveImage(self):  # функция для сохранения рисунка
         exporter = pg.exporters.ImageExporter(self.Field.scene())
-        path = str(os.getcwd())
-        filePath, _ = QFileDialog.getSaveFileName(self, "Save Image",
+        path = str(os.getcwd())  # получение пути к текущей папке
+        filePath, _ = QFileDialog.getSaveFileName(self, "Save Image",  # открытие диалогового окна для сохранения файла
                                                   f"{path}",
                                                   "PNG(*.png);;JPEG(*.jpg *.jpeg);;All Files(*.*) ")
-        exporter.export(filePath)
-        exSaved.show()
+        exporter.export(filePath)  # экспорт поля с графиками
+        exSaved.show()  # показ следующего окна
 
-    def HelpOpen(self):
+    def HelpOpen(self):  # открыть файл с руководством пользователя
         pass
 
-    def draw(self, mas):
+    def draw(self, mas):  # добавить полученные данные для отрисовки графика в общий массив
         # print(mas)
         self.Field.showGrid(x=True, y=True)
         grapics.append(mas)
-        print(grapics)
+        # print(grapics)
 
-    def event(self, event, **kwargs):
-        if event.type() == QEvent.WindowActivate:
-            self.coltitle()
-            print(65, grapics)
+    def event(self, event, **kwargs):  # проверка текущего события
+        if event.type() == QEvent.WindowActivate:  # если окно активировано
+            self.color_title()  # вызываем функцию для добавления заголовка и фонового цвета
 
-            for mas in grapics:
+            for mas in grapics:  # отрисовываем каждый график из массива
                 e = mas[0]
                 x = list(np.arange(mas[1], mas[2] + 1))
                 y = list(ne.evaluate(e))
-                print(x, y)
+                # print(x, y)
                 # self.Field.setBackground("w")
                 self.Field.plot(x, y, pen=mas[3], width=79)
-                print(mas)
+                # print(mas)
 
         return QWidget.event(self, event)
 
-    def coltitle(self):
-        with open("name+color.txt", "r+") as my_file:
+    def color_title(self):  # добавление цвета фона и заголовка
+        with open("name+color.txt", "r+") as my_file:  # считываем введённые пользователем данные из текстового файла
             x = my_file.read().split('@')[-1]
             x = x.split('$')
             color = x[0]
             title = x[1]
-        self.Title.setText(title)
+        self.Title.setText(title)  # устанавливаем заголовок
         if color == 'w':
-            self.Field.setBackground("w")
+            self.Field.setBackground("w")  # устанавливаем фон
         else:
             self.Field.setBackground("k")
 
-    def Add(self):
+    def Add(self):  # функция для показа следующего окна при нажатии на кнопку
         exAdd.show()
 
 
-class AddWin(QDialog):
+class AddWin(QDialog):  # окно добавления графика
     def __init__(self):
         super().__init__()
-        uic.loadUi('AddGraphWindow.ui', self)  # Загружаем дизайн
+        uic.loadUi('AddGraphWindow.ui', self)  # загружаем дизайн
 
-        self.OKButton.clicked.connect(self.add_OK)
+        self.OKButton.clicked.connect(self.add_OK)  # подключение кнопок
         self.CancelButton.clicked.connect(self.close_Cancel)
 
-    def add_OK(self):
+    def add_OK(self):  # функция получения данных, введённых пользователем (если нажата кнопка ОК)
         colors = {'Красный': 'r', 'Зелёный': 'g', 'Синий': 'b', 'Чёрный': 'k', 'Фиолетовый': 'violet',
                   'Оранжевый': 'orange', 'Розовый': 'pink', 'Голубой': 'cyan', 'Белый': 'white'}
-        equal = self.finctionTE.toPlainText()
+        equal = self.finctionTE.toPlainText()  # заданная функция
         left_limit = self.lineEditFROM.text()
         if left_limit == '':
             left_limit = -100
@@ -133,27 +130,27 @@ class AddWin(QDialog):
             right_limit = 100
         right_limit = int(right_limit)
         color = colors[self.colorBox.currentText()]
-        print(color)
-        mas = [equal, left_limit, right_limit, color]
-        GraphWin.draw(GraphWin(), mas)
-        exAdd.close()
+        # print(color)
+        mas = [equal, left_limit, right_limit, color]  # создаем массив всех параметров этого графика
+        GraphWin.draw(GraphWin(), mas)  # вызываем функцию другого класса для добавления графика в общий массив
+        exAdd.close()  # закрываем окно
 
-    def close_Cancel(self):
-        exAdd.close()
+    def close_Cancel(self):  # если нажата кнопка Cancel
+        exAdd.close()  # закрываем окно
 
 
-class SavedFile(QDialog):
+class SavedFile(QDialog):  # окно: "Файл успешно сохранен"
     def __init__(self):
         super().__init__()
         uic.loadUi('SavedFile.ui', self)
 
-        self.OK.clicked.connect(self.dOK)
-        self.Exit.clicked.connect(self.dexit)
+        self.OK.clicked.connect(self.func_OK)  # подключение кнопок
+        self.Exit.clicked.connect(self.func_exit)
 
-    def dOK(self):
+    def func_OK(self):  # если ОК - закрытие данного окна, возврат к основному окну
         exSaved.close()
 
-    def dexit(self):
+    def func_exit(self):  # если ВЫХОД - возврат на начальный экран
         exGr.close()
         exSaved.close()
 
@@ -162,7 +159,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = StartWin()  # Стартовое окно (класс)
     exGr = GraphWin()  # Основное окно (класс)
-    exAdd = AddWin()
-    exSaved = SavedFile()
+    exAdd = AddWin()  # Окно добавления графиков (класс)
+    exSaved = SavedFile()  # окно: "Файл успешно сохранен" (класс)
     ex.show()  # Изначально - открытие стартового окна
     sys.exit(app.exec_())
