@@ -85,10 +85,7 @@ class GraphWin(QMainWindow):  # основное окно
                 e = mas[0]
                 x = list(np.arange(mas[1], mas[2] + 1))
                 y = list(ne.evaluate(e))
-                # print(x, y)
-                # self.Field.setBackground("w")
-                self.Field.plot(x, y, pen=mas[3], width=79)
-                # print(mas)
+                self.Field.plot(x, y, pen=mas[3])
 
         return QWidget.event(self, event)
 
