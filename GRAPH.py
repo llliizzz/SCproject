@@ -196,6 +196,6 @@ if __name__ == '__main__':
     exGr = GraphWin()  # Основное окно (класс)
     exAdd = AddWin()  # Окно добавления графиков (класс)
     exSaved = SavedFile()  # окно: "Файл успешно сохранен" (класс)
-    exHelp = ShowingHelp()
+    exHelp = ShowingHelp()  # окно показа руководства пользователя
     ex.show()  # Изначально - открытие стартового окна
     sys.exit(app.exec_())
