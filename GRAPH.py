@@ -5,9 +5,7 @@ import numpy as np
 import numexpr as ne
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+from PyQt5.Qt import *
 
 import pyqtgraph as pg
 import pyqtgraph.exporters
@@ -18,7 +16,7 @@ grapics = []  # список всех добавленных графиков
 class StartWin(QDialog):  # стартовое окно
     def __init__(self):
         super().__init__()
-        uic.loadUi('StartWindow.ui', self)
+        uic.loadUi('interface/StartWindow.ui', self)
 
         self.GoButton.clicked.connect(self.switchGraph)
 
@@ -48,7 +46,7 @@ class GraphWin(QMainWindow):  # основное окно
         super().__init__()
         global grapics
 
-        uic.loadUi('GraphWindow.ui', self)  # Загружаем дизайн
+        uic.loadUi('interface/GraphWindow.ui', self)  # Загружаем дизайн
 
         self.Field.showGrid(x=True, y=True)  # показ сетки на поле
 
@@ -58,11 +56,12 @@ class GraphWin(QMainWindow):  # основное окно
         self.HelpBtn.triggered.connect(self.HelpOpen)
         self.HelpBtn.setShortcut(QKeySequence("Ctrl+H"))
 
-        self.AddButton.clicked.connect(self.Add)
+        self.AddButton.clicked.connect(self.func_Add)
 
     def SaveImage(self):  # функция для сохранения рисунка
         exporter = pg.exporters.ImageExporter(self.Field.scene())
-        path = str(os.getcwd())  # получение пути к текущей папке
+        path = str(os.getcwd()) + '\CREATED_IMAGES'  # получение пути к текущей папке
+        # print(path)
         filePath, _ = QFileDialog.getSaveFileName(self, "Save Image",  # открытие диалогового окна для сохранения файла
                                                   f"{path}",
                                                   "PNG(*.png);;JPEG(*.jpg *.jpeg);;All Files(*.*) ")
@@ -70,7 +69,7 @@ class GraphWin(QMainWindow):  # основное окно
         exSaved.show()  # показ следующего окна
 
     def HelpOpen(self):  # открыть файл с руководством пользователя
-        pass
+        exHelp.show()
 
     def draw(self, mas):  # добавить полученные данные для отрисовки графика в общий массив
         # print(mas)
@@ -105,14 +104,14 @@ class GraphWin(QMainWindow):  # основное окно
         else:
             self.Field.setBackground("k")
 
-    def Add(self):  # функция для показа следующего окна при нажатии на кнопку
+    def func_Add(self):  # функция для показа следующего окна при нажатии на кнопку
         exAdd.show()
 
 
 class AddWin(QDialog):  # окно добавления графика
     def __init__(self):
         super().__init__()
-        uic.loadUi('AddGraphWindow.ui', self)  # загружаем дизайн
+        uic.loadUi('interface/AddGraphWindow.ui', self)  # загружаем дизайн
 
         self.OKButton.clicked.connect(self.add_OK)  # подключение кнопок
         self.CancelButton.clicked.connect(self.close_Cancel)
@@ -142,7 +141,7 @@ class AddWin(QDialog):  # окно добавления графика
 class SavedFile(QDialog):  # окно: "Файл успешно сохранен"
     def __init__(self):
         super().__init__()
-        uic.loadUi('SavedFile.ui', self)
+        uic.loadUi('interface/SavedFile.ui', self)
 
         self.OK.clicked.connect(self.func_OK)  # подключение кнопок
         self.Exit.clicked.connect(self.func_exit)
@@ -151,8 +150,44 @@ class SavedFile(QDialog):  # окно: "Файл успешно сохранен
         exSaved.close()
 
     def func_exit(self):  # если ВЫХОД - возврат на начальный экран
+        global grapics
+        grapics = []
         exGr.close()
         exSaved.close()
+
+
+class ShowingHelp(QWidget):  # окно для показа файла с руководством пользователя
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('interface/helpingWindow.ui', self)
+
+        self.GO.clicked.connect(self.next)  # подключение кнопок
+        self.STOP.clicked.connect(self.prev)
+        self.ex.clicked.connect(self.func_exit)
+
+        self.NOW = 1
+        pixmapImage = QPixmap('HELP_images/HELP_page-1.jpg')
+        self.label.setPixmap(pixmapImage)
+
+    def next(self):
+        if self.NOW != 3:
+            self.NOW += 1
+        else:
+            self.NOW = 1
+        pixmapImage = QPixmap(f'HELP_images/HELP_page-{self.NOW}.jpg')
+        self.label.setPixmap(pixmapImage)
+
+    def prev(self):
+        if self.NOW != 1:
+            self.NOW -= 1
+        else:
+            self.NOW = 3
+        pixmapImage = QPixmap(f'HELP_images/HELP_page-{self.NOW}.jpg')
+        self.label.setPixmap(pixmapImage)
+
+    def func_exit(self):  # если ВЫХОД
+        self.NOW = 1
+        exHelp.close()
 
 
 if __name__ == '__main__':
@@ -161,5 +196,6 @@ if __name__ == '__main__':
     exGr = GraphWin()  # Основное окно (класс)
     exAdd = AddWin()  # Окно добавления графиков (класс)
     exSaved = SavedFile()  # окно: "Файл успешно сохранен" (класс)
+    exHelp = ShowingHelp()
     ex.show()  # Изначально - открытие стартового окна
     sys.exit(app.exec_())
