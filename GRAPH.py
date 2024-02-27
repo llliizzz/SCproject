@@ -150,7 +150,7 @@ class SavedFile(QDialog):  # окно: "Файл успешно сохранен
         global grapics
         grapics = []
         exGr.close()
-        exSaved.close()
+        exSaved.close()  # закрытие окна
 
 
 class ShowingHelp(QWidget):  # окно для показа файла с руководством пользователя
